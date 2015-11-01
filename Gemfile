@@ -18,6 +18,7 @@ group :development, :test do
   gem 'byebug', '5.0.0'
   gem 'launchy', '2.4.3'
   gem 'rerun', '0.10.0'
+  gem 'pry'
 
   gem 'simplecov', '0.10.0'
   gem 'webmock', '1.21.0'
