@@ -24,7 +24,8 @@ class HangpersonGame
   end
   
   def guess(letter)
-    reg_exp = Regexp.new letter, true
+    letter =~ /[a-zA-Z]/ ? reg_exp = Regexp.new(letter, true) :
+      raise(ArgumentError)
 
     if word =~ reg_exp and guesses !~ reg_exp
       guesses << letter
@@ -32,6 +33,22 @@ class HangpersonGame
       wrong_guesses << letter
     else
       false
+    end
+  end
+
+  def word_with_guesses
+    output = word 
+    guesses.empty? ? reg_exp = /./ : reg_exp = /[^#{guesses}]/ 
+    output.gsub(reg_exp, '-') 
+  end
+
+  def check_win_or_lose
+    if word_with_guesses == word 
+      :win
+    elsif wrong_guesses.length > 6
+      :lose
+    else
+      :play
     end
   end
 end
